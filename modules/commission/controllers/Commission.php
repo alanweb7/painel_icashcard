@@ -341,6 +341,7 @@ class Commission extends AdminController
 
             $idsRede = array_column($subordinados, 'staffid');
 
+            // SOMENTE OS IDS DA MINHA REDE
             array_push($idsRede, $staff_id);
 
 
@@ -375,7 +376,7 @@ class Commission extends AdminController
 
 
             // Sempre adicionar a condição do staff_id
-            if (!is_admin() && strtolower($roleName) !== "supervisor") {
+            if ((!is_admin() && !staff_can('view_own',  'finance_manager')) && strtolower($roleName) !== "supervisor") {
 
                 if ($roleName == "Gerente Comercial" && staff_can('view_network',  'corban_proposals')) {
                     array_push($where, 'AND staffid IN (' . implode(', ', $idsRede) . ')');

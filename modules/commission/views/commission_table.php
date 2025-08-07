@@ -147,7 +147,7 @@
 
                 // VERIFICA SE É CORBAN
                 $displayTo = [5];
-                if (in_array($my_role, $displayTo) || is_admin()) {
+                if (in_array($my_role, $displayTo) || is_admin() || staff_can('view_own',  'finance_manager')) {
 
                     echo render_select(
                         'role_filter', // Nome do campo

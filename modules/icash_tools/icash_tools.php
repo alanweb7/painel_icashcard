@@ -816,6 +816,13 @@ function icash_tools_module_permissions_for_staff($permissions)
     ];
     register_staff_capabilities('super_manager', $super_manager_capabilities, _l('Super Admin'));
 
+    // ANALISTA FINANCEIRO
+    $super_finance_manager['capabilities'] = [
+        'view_own'   => _l('permission_view') . '(' . _l('permission_global') . ')',
+        'edit'   => 'Liberar o Pagamento',
+    ];
+    register_staff_capabilities('finance_manager', $super_finance_manager, _l('Diretor Financeiro'));
+
 
     $capabilities['capabilities'] = [
         'view'   => _l('permission_view') . '(' . _l('permission_global') . ')',
