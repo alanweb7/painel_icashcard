@@ -38,7 +38,7 @@ composer.lock
 # Ignorar arquivos de ambiente
 .env
 .env.*
-
+.vscode
 # Ignorar arquivos do node (se estiver usando algum frontend com Node.js)
 node_modules/
 package-lock.json
