@@ -7,7 +7,7 @@ $CI = &get_instance();
 
 
 
-if (staff_can('view',  'icash_tables')) {
+if (staff_can('view',  'corban_proposals')) {
     
 
     // MENU PROPOSTAS
@@ -46,7 +46,7 @@ if (staff_can('view',  'icash_tables')) {
     ]);
 }
 
-if (staff_can('view',  'corban_proposals')) {
+if (staff_can('view',  'icash_tables')) {
     // Adicionar itens de submenu sob "icash-tabelas"
     $CI->app_menu->add_sidebar_children_item('icash-tabelas', [
         'slug'     => 'view-table',
