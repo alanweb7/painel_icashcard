@@ -7,7 +7,7 @@ Module Name: Icash Card Advanced Tools
 Description: icashCard - Ferramentas avançadas
 Version: 7.0.0
 Author: Alan Silva
-Author URI: http://atende.top/alan-silva
+Author URI: http://atende.top/alan-silva-oficial
 */
 /**
  * INFORMACOES:
