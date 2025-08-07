@@ -7,8 +7,8 @@ $CI = &get_instance();
 
 
 
-if (staff_can('view',  'corban_proposals')) {
-    
+if (staff_can('view_own',  'corban_proposals')) {
+     
 
     // MENU PROPOSTAS
       $CI->app_menu->add_sidebar_menu_item('icash-propostas', [
