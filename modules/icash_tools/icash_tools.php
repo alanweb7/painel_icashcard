@@ -798,11 +798,13 @@ function icash_tools_module_permissions_for_staff($permissions)
 
 
     $global_capabilities['capabilities'] = [
-        'view_users'   => _l('Ver menu usuários'),
-        'view_admins'   => _l('Ver menu ADMIN\'s'),
-        'create' => _l('permission_create'),
-        'edit'   => _l('permission_edit'),
-        'delete' => _l('permission_delete'),
+        'view_users'        => _l('Ver menu usuários'), // VER MENU ATENDENTES
+        'view_employee'     => _l('Ver menu Atendentes'), // VER MENU ATENDENTES
+        'view_corbans'     => _l('Ver menu CORBAN\'s'), // VER MENU CORBANS
+        'view_admins'       => _l('Ver menu ADMIN\'s'), // VER MENU ADMIN'S
+        'create'            => _l('permission_create'),
+        'edit'              => _l('permission_edit'),
+        'delete'            => _l('permission_delete'),
     ];
     register_staff_capabilities('icash_globals', $global_capabilities, _l('Permissões globais do sistema'));
 

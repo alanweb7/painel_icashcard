@@ -15,21 +15,8 @@ $CI->app_menu->add_sidebar_menu_item('icash-tools-banners', [
 ]);
 
 
-if (staff_can('view_col_atd',  'corban_proposals')) {
-    // ATENDENTES
-    $CI->app_menu->add_sidebar_menu_item('icash-tools-atendentes', [
-        'slug'     => 'icash-tools-atendentes',
-        'name'     => 'Atendentes',
-        'href'     => admin_url('icash_tools/listar_atendentes'),
-        'position' => 10,
-        'icon'     => 'fa fa-users',
-    ]);
-}
-
-
-
-if (staff_can('view_users',  'icash_globals') && staff_can('view_admins',  'icash_globals')) {
-    // MENU USUÁRIOA
+if (staff_can('view_users',  'icash_globals')) {
+    // MENU USUÁRIOS
     $CI->app_menu->add_sidebar_menu_item('icash-usuarios', [
         'collapse' => true,
         'name'     => 'Usuários',
@@ -37,21 +24,38 @@ if (staff_can('view_users',  'icash_globals') && staff_can('view_admins',  'icas
         'icon'     => 'fa fa-users',
     ]);
 
-    $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
-        'slug'     => 'menu-users',
-        'name'     => 'Admins',
-        'href'     => admin_url('icash_tools/listar_admins'),
-        'icon'     => 'fa fa-user',
-        'position' => 1,
-    ]);
+    if (staff_can('view_employee',  'icash_globals')) {
+        // ATENDENTES
+        $CI->app_menu->add_sidebar_menu_item('icash-tools-atendentes', [
+            'slug'     => 'icash-tools-atendentes',
+            'name'     => 'Atendentes',
+            'href'     => admin_url('icash_tools/listar_atendentes'),
+            'position' => 10,
+            'icon'     => 'fa fa-users',
+        ]);
+    }
 
-    $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
-        'slug'     => 'menu-corbans',
-        'name'     => 'CORBAN\'s',
-        'href'     => admin_url('hr_profile/staff_infor'),
-        'icon'     => 'fa fa-user',
-        'position' => 2,
-    ]);
+
+    if (staff_can('view_admins',  'icash_globals')) {
+
+        $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
+            'slug'     => 'menu-users',
+            'name'     => 'Admins',
+            'href'     => admin_url('icash_tools/listar_admins'),
+            'icon'     => 'fa fa-user',
+            'position' => 1,
+        ]);
+    }
+
+    if (staff_can('view_corbans',  'icash_globals')) {
+        $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
+            'slug'     => 'menu-corbans',
+            'name'     => 'CORBAN\'s',
+            'href'     => admin_url('hr_profile/staff_infor'),
+            'icon'     => 'fa fa-user',
+            'position' => 2,
+        ]);
+    }
 }
 
 
@@ -77,7 +81,6 @@ if (staff_can('view_my_link',  'corban_links')) {
         'position' => 49,
         'icon'     => 'fa fa-anchor',
     ]);
-
 }
 
 //================================================>
@@ -94,7 +97,7 @@ $CI->app_menu->add_sidebar_menu_item('icash-tools-logout', [
 
 
 
-if (staff_can('view_own',  'corban_proposals')) {
+if (staff_can('view_own',  'corban_proposals') || staff_can('view',  'corban_proposals')) {
 
 
     // MENU PROPOSTAS
