@@ -100,9 +100,10 @@ $CI->app_menu->add_sidebar_menu_item('icash-tools-logout', [
 
 
 if (
-    staff_can('view_own',  'corban_proposals') ||
-    staff_can('view',  'corban_proposals') ||
-    staff_can('view_employee',  'corban_proposals')
+    staff_can('view_own',       'corban_proposals') ||
+    staff_can('view',           'corban_proposals') ||
+    staff_can('view_employee',  'corban_proposals') ||
+    staff_can('view_network',   'corban_proposals')
 ) {
 
 
