@@ -13,7 +13,6 @@ if (staff_can('view',  'icash_tables')) {
     // MENU PROPOSTAS
       $CI->app_menu->add_sidebar_menu_item('icash-propostas', [
         'collapse' => true,
-        'slug'     => 'proposals-menu',
         'name'     => 'Propostas',
         'position' => 3,
         'icon'     => 'fa fa-table',
