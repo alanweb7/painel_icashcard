@@ -384,7 +384,7 @@ HTML;
 STYLE;
 
 
-$script = <<<SCRIPT
+    $script = <<<SCRIPT
 <script>
 window.addEventListener('DOMContentLoaded', function () {
     var el = document.querySelector(".dropdown.sidebar-user-profile");
@@ -396,8 +396,8 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
 SCRIPT;
 
-echo $style;
-echo $script;
+    echo $style;
+    echo $script;
 });
 
 function get_custom_field_value_db($proposal_id, $custom_field_id, $module = 'proposal')
@@ -745,9 +745,10 @@ function icash_tools_module_permissions_for_staff($permissions)
 
     $capabilities = [];
 
-    $capabilities['capabilities'] = [
+    $links_permissions['capabilities'] = [
         'view'   => _l('permission_view') . '(' . _l('permission_global') . ')',
         'view_filters'   => _l('Ver Filtros de relatórios'),
+        'view_my_link'   => _l('Ver link (Cadastro CORBAN)'),
         'view_receipt'   => 'Ver Recibos' . '(' . _l('permission_global') . ')',
         'paid_receipt'   => 'Pagar recibos',
         'create' => _l('permission_create'),
@@ -756,24 +757,25 @@ function icash_tools_module_permissions_for_staff($permissions)
         'delete' => _l('permission_delete'),
     ];
 
-    register_staff_capabilities('corban_commissions', $capabilities, "Faturamento e Comissões (ICASHCARD)");
+    register_staff_capabilities('corban_links', $links_permissions, _l('Permissões de Links'));
+
 
     $corban_capabilities['capabilities'] = [
-        'view_own'   => _l('permission_view')  . '(Criadas pelo CORBAN)', //criadas por ele
-        'view'   => _l('permission_view') . '(' . _l('permission_global') . ')',
-        'view_details'   => _l('Ver detalhes') . '(' . _l('permission_global') . ')',
-        'view_employee'   => _l('permission_view') . '(Criadas pelo Atendente)',
-        'view_network'   => _l('permission_view') . '(Criadas pela sua REDE)',
-        'create' => _l('permission_create'),
-        'edit'   => _l('permission_edit'),
-        'approve_doc'   => _l('Aprovar Documentos'),
-        'edit_doc'   => _l('Editar Documentos'),
-        'view_doc'   => _l('Visualizar Documentos'),
-        'status_edit'   => _l('proposal_status_edit'),
+        'view_own'          => _l('permission_view')  . '(Criadas pelo CORBAN)', //criadas por ele
+        'view'              => _l('permission_view') . '(' . _l('permission_global') . ')',
+        'view_details'      => _l('Ver detalhes') . '(' . _l('permission_global') . ')',
+        'view_employee'     => _l('permission_view') . '(Criadas pelo Atendente)',
+        'view_network'      => _l('permission_view') . '(Criadas pela sua REDE)',
+        'create'            => _l('permission_create'),
+        'edit'              => _l('permission_edit'),
+        'approve_doc'       => _l('Aprovar Documentos'),
+        'edit_doc'          => _l('Editar Documentos'),
+        'view_doc'          => _l('Visualizar Documentos'),
+        'status_edit'       => _l('proposal_status_edit'),
         'status_edit_adm'   => _l('ADM editor de Status'),
-        'view_col_staff'   => _l('view_col_staff'), //VER COLUNA CORBAN
-        'view_col_atd'   => _l('view_col_atd'), //VER COLUNA ATENDENTE
-        'delete' => _l('permission_delete'),
+        'view_col_staff'    => _l('view_col_staff'), //VER COLUNA CORBAN
+        'view_col_atd'      => _l('view_col_atd'), //VER COLUNA ATENDENTE
+        'delete'            => _l('permission_delete'),
     ];
 
     register_staff_capabilities('corban_proposals', $corban_capabilities, _l('corban_proposals'));
@@ -795,6 +797,15 @@ function icash_tools_module_permissions_for_staff($permissions)
     register_staff_capabilities('user_manager', $user_capabilities, _l('user_manager'));
 
 
+    $global_capabilities['capabilities'] = [
+        'view_users'   => _l('Ver menu usuários'),
+        'view_admins'   => _l('Ver menu ADMIN\'s'),
+        'create' => _l('permission_create'),
+        'edit'   => _l('permission_edit'),
+        'delete' => _l('permission_delete'),
+    ];
+    register_staff_capabilities('icash_globals', $global_capabilities, _l('Permissões globais do sistema'));
+
 
     // ANALISTA FINANCEIRO
     $super_manager_capabilities['capabilities'] = [
@@ -804,9 +815,21 @@ function icash_tools_module_permissions_for_staff($permissions)
     register_staff_capabilities('super_manager', $super_manager_capabilities, _l('Super Admin'));
 
 
+    $capabilities['capabilities'] = [
+        'view'   => _l('permission_view') . '(' . _l('permission_global') . ')',
+        'view_filters'   => _l('Ver Filtros de relatórios'),
+        'view_receipt'   => 'Ver Recibos' . '(' . _l('permission_global') . ')',
+        'paid_receipt'   => 'Pagar recibos',
+        'create' => _l('permission_create'),
+        'edit'   => _l('permission_edit'),
+        // 'process_commissions'   => _l('Processar Comissão'),
+        'delete' => _l('permission_delete'),
+    ];
+
+
+    register_staff_capabilities('corban_commissions', $capabilities, "Faturamento e Comissões (ICASHCARD)");
     register_staff_capabilities('icash_tools', $capabilities, _l('permissions_default'));
     register_staff_capabilities('icash_tables', $capabilities, _l('table_control'));
-    register_staff_capabilities('corban_links', $capabilities, _l('corban_links'));
 }
 
 

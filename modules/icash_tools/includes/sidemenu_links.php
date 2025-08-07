@@ -5,26 +5,117 @@
 $CI = &get_instance();
 
 
+// COMUNICADOS
+$CI->app_menu->add_sidebar_menu_item('icash-tools-banners', [
+    'slug'     => 'icash-tools-banners',
+    'name'     => 'Comunicados',
+    'href'     => admin_url('icash_tools/custom_dashboard'),
+    'position' => 1,
+    'icon'     => 'fa fa-home',
+]);
+
+
+if (staff_can('view_col_atd',  'corban_proposals')) {
+    // ATENDENTES
+    $CI->app_menu->add_sidebar_menu_item('icash-tools-atendentes', [
+        'slug'     => 'icash-tools-atendentes',
+        'name'     => 'Atendentes',
+        'href'     => admin_url('icash_tools/listar_atendentes'),
+        'position' => 10,
+        'icon'     => 'fa fa-users',
+    ]);
+}
+
+
+
+if (staff_can('view_users',  'icash_globals') && staff_can('view_admins',  'icash_globals')) {
+    // MENU USUÁRIOA
+    $CI->app_menu->add_sidebar_menu_item('icash-usuarios', [
+        'collapse' => true,
+        'name'     => 'Usuários',
+        'position' => 3,
+        'icon'     => 'fa fa-users',
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
+        'slug'     => 'menu-users',
+        'name'     => 'Admins',
+        'href'     => admin_url('icash_tools/listar_admins'),
+        'icon'     => 'fa fa-user',
+        'position' => 1,
+    ]);
+
+    $CI->app_menu->add_sidebar_children_item('icash-usuarios', [
+        'slug'     => 'menu-corbans',
+        'name'     => 'CORBAN\'s',
+        'href'     => admin_url('hr_profile/staff_infor'),
+        'icon'     => 'fa fa-user',
+        'position' => 2,
+    ]);
+}
+
+
+if (staff_can('view',  'corban_links')) {
+
+    // Adicionar itens de submenu sob "icash-tabelas"
+    $CI->app_menu->add_sidebar_menu_item('corban-links', [
+        'slug'     => 'view-links',
+        'name'     => _l('Tabelas e Links'),
+        'icon'     => 'fa fa-handshake-o menu-icon fa-duotone fa-circle-nodes',
+        'href'     => admin_url('icash_tools/listar_comissoes'),
+        'position' => 50,
+    ]);
+}
+
+if (staff_can('view_my_link',  'corban_links')) {
+
+    // MEU LINK
+    $CI->app_menu->add_sidebar_menu_item('icash-tools-meu-link', [
+        'slug'     => 'icash-tools-meu-link',
+        'name'     => 'Meu Link',
+        'href'     => admin_url('icash_tools/my_link'),
+        'position' => 49,
+        'icon'     => 'fa fa-anchor',
+    ]);
+
+}
+
+//================================================>
+
+
+// menu sair
+$CI->app_menu->add_sidebar_menu_item('icash-tools-logout', [
+    'slug'     => 'icash-tools-logout',
+    'name'     => 'Sair',
+    'href'     => admin_url('authentication/logout'),
+    'position' => 1000,
+    'icon'     => 'fa fa-arrow-right-from-bracket',
+]);
+
 
 
 if (staff_can('view_own',  'corban_proposals')) {
-     
+
 
     // MENU PROPOSTAS
-      $CI->app_menu->add_sidebar_menu_item('icash-propostas', [
+    $CI->app_menu->add_sidebar_menu_item('icash-propostas', [
         'collapse' => true,
         'name'     => 'Propostas',
         'position' => 3,
         'icon'     => 'fa fa-table',
-    ]);  
-
-    $CI->app_menu->add_sidebar_children_item('icash-propostas', [
-        'slug'     => 'proposals-register',
-        'name'     => 'Simular | Digitar',
-        'href'     => admin_url('icash_tools/tables'),
-        'icon'     => 'fa fa-calculator',
-        'position' => 1,
     ]);
+
+    if (is_admin()) {
+
+        $CI->app_menu->add_sidebar_children_item('icash-propostas', [
+            'slug'     => 'proposals-register',
+            'name'     => 'Simular | Digitar',
+            'href'     => admin_url('icash_tools/tables'),
+            'icon'     => 'fa fa-calculator',
+            'position' => 1,
+        ]);
+    }
+
 
     $CI->app_menu->add_sidebar_children_item('icash-propostas', [
         'slug'     => 'proposals-sign',
@@ -37,6 +128,10 @@ if (staff_can('view_own',  'corban_proposals')) {
     //---------------------------------------------------->
 
 
+
+}
+
+if (is_admin()) {
     // Adicionar item de menu principal para tabelas
     $CI->app_menu->add_sidebar_menu_item('icash-tabelas', [
         'collapse' => true,
@@ -45,6 +140,9 @@ if (staff_can('view_own',  'corban_proposals')) {
         'icon'     => 'fa fa-table',
     ]);
 }
+
+
+
 
 if (staff_can('view',  'icash_tables')) {
     // Adicionar itens de submenu sob "icash-tabelas"
@@ -65,16 +163,7 @@ if (staff_can('view',  'icash_tables')) {
     ]);
 }
 
-if (staff_can('view',  'corban_links')) {
-    // Adicionar itens de submenu sob "icash-tabelas"
-    $CI->app_menu->add_sidebar_menu_item('corban-links', [
-        'slug'     => 'view-links',
-        'name'     => _l('Tabelas e Links'),
-        'icon'     => 'fa fa-handshake-o menu-icon fa-duotone fa-circle-nodes',
-        'href'     => admin_url('icash_tools/listar_comissoes'),
-        'position' => 50,
-    ]);
-}
+
 
 if (is_admin()) {
 
