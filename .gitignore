@@ -1,0 +1,44 @@
+# Ignorar a pasta de uploads
+/uploads/
+
+# Ignorar a pasta application
+/application/
+/temp/
+/system/
+/resources/
+/media/
+/flexibackup/
+/assets/
+/web.config/
+
+# Ignorar arquivos temporários do sistema
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorar arquivos de cache
+/cache/
+*.cache
+
+# Ignorar IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar vendor e composer.lock (caso use Composer)
+vendor/
+composer.lock
+
+# Ignorar arquivos de ambiente
+.env
+.env.*
+
+# Ignorar arquivos do node (se estiver usando algum frontend com Node.js)
+node_modules/
+package-lock.json
